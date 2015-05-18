@@ -1,0 +1,44 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot' 
+
+jar {
+    baseName = 'dsy'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    all*.exclude group: 'org.slf4j', module: 'slf4j-nop'
+}
+dependencies {
+    compile "org.yaml:snakeyaml:1.15"
+    compile "org.unitils:unitils-dbunit:3.3"
+
+    testCompile "org.unitils:unitils-spring:3.3"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile "org.springframework.boot:spring-boot-starter-jdbc"
+    testCompile "com.h2database:h2:1.4.181"
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}

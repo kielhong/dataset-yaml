@@ -1,0 +1,23 @@
+customer:
+  - id: 1
+    name: "John McEnroe"
+    login: jMAC
+  - id: 2
+    name: "Larry Bird"
+    login: larryB
+transactions:
+  - id: 1
+    customer_id: 1
+    item_id: 1
+    purchase_date: "2007-05-15 15:40:16.638"
+  - id: 2
+    customer_id: 2
+    item_id: 2
+    purchase_date: "2007-03-12 15:40:16.638"
+item:
+  - id: 1
+    name: "Wilson Tennis Racquet"
+    price: 230.00
+  - id: 2
+    name: "Autographed Basketball Jersey"
+    price: 100.00
