@@ -17,13 +17,21 @@ public class JPAFlyBuilder {
     private String file;
     private BeanAccess beanAccess = BeanAccess.DEFAULT;
 
+    public JPAFlyBuilder() {
+    }
 
-    public JPAFlyBuilder(EntityManager entityManager) {
+    public JPAFlyBuilder entityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
+        return this;
     }
 
     public JPAFlyBuilder withDefaultPackage(String defaultPackage) {
         this.defaultPackage = defaultPackage;
+        return this;
+    }
+
+    public JPAFlyBuilder withFileName(String fileName) {
+        this.file = fileName.replace(".", "/") + ".yaml";
         return this;
     }
 
@@ -38,15 +46,15 @@ public class JPAFlyBuilder {
     }
 
     public JPAFlyBuilder withTestClass(Object object) {
-//        System.out.println("packageName:" + object.getClass().getPackage().getName());
-//        System.out.println("file Simple Name:" + object.getClass().getSimpleName());
-//        System.out.println("file Full Name:" + object.getClass().getName());
         this.defaultPackage = object.getClass().getPackage().getName();
         this.file = object.getClass().getName().replace(".", "/") + ".yaml";
         return this;
     }
 
     public Fly build() {
+        System.out.println("packageName:" + this.defaultPackage);
+        System.out.println("file Simple Name:" + this.file);
+
         return new FlyImpl(
                 new JPAPersister(entityManager, mergeEntities),
                 defaultPackage,

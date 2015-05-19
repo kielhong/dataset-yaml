@@ -1,18 +1,19 @@
 package fly.loader;
 
 import fly.TestApplication;
-import fly.jpa.JPAFlyBuilder;
+import fly.annotation.Fly;
+import fly.annotation.FlyTestExecutionListener;
 import fly.repository.EmployeeRepository;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 /**
  * Created by 1001982(kielhong@sk.com)
@@ -20,25 +21,19 @@ import javax.persistence.EntityManager;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplication.class)
-@Transactional
+@TestExecutionListeners(
+        listeners = {FlyTestExecutionListener.class,
+                DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class})
+@Fly
 public class EmployeeTest {
-    @Autowired
-    EntityManager entityManager;
-
     @Autowired
     EmployeeRepository employeeRepository;
 
-    Fly fixture;
-
-    @Before
-    public void setup() {
-        new JPAFlyBuilder(entityManager).withTestClass(this).build().load();
-    }
-
     @Test
-    public void testEmployeeLoad() {
+    public void testEmployeeDataSetLoad() {
         Employee employee = employeeRepository.findOne(1);
 
+        System.out.println(employeeRepository.count());
         Assert.assertTrue(employeeRepository.count() > 0);
         Assert.assertEquals(employee.getName(), "Fido");
     }

@@ -13,9 +13,9 @@ import java.util.Arrays;
  * Date : 15. 5. 15.
  */
 public class FlyTest {
-    @Fly(value = "class")
+    @Fly(dataSet = "class")
     public class TestAnnotatedObject {
-        @Fly(value = "string")
+        @Fly(dataSet = "string")
         public void test() {
 
         }
@@ -48,7 +48,7 @@ public class FlyTest {
                 .filter(m -> m.getName().equals("test"))
                 .forEach(m -> {
                     Fly ds = m.getAnnotation(Fly.class);
-                    Assert.assertEquals(ds.value(), "string");
+                    Assert.assertEquals(ds.dataSet(), "string");
                 });
     }
 
@@ -59,7 +59,7 @@ public class FlyTest {
                 Fly ds = m.getAnnotation(Fly.class);
 
                 if (m.getName().equals("defaultTest")) {
-                    Assert.assertEquals(ds.value(), "");
+                    Assert.assertEquals(ds.dataSet(), "");
                 }
             }
         }
@@ -73,7 +73,7 @@ public class FlyTest {
             if (annotation instanceof Fly) {
                 Fly ds = (Fly)annotation;
 
-                Assert.assertEquals("class", ds.value());
+                Assert.assertEquals("class", ds.dataSet());
             }
         }
     }

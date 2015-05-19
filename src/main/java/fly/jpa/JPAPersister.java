@@ -25,11 +25,13 @@ public class JPAPersister implements Persister {
     @Override
     public void persisit(Object entity) {
         if (entity.getClass().isAnnotationPresent(Entity.class)) {
+            entityManager.getTransaction().begin();
             if (mergeEntities) {
                 entityManager.merge(entity);
             } else {
                 entityManager.persist(entity);
             }
+            entityManager.getTransaction().commit();
         }
     }
 

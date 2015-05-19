@@ -14,5 +14,5 @@ import java.lang.annotation.Target;
 public @interface Fly {
     String defaultString = "";
 
-    String value() default defaultString;
+    String dataSet() default defaultString;
 }

@@ -1,13 +1,10 @@
 package fly.loader;
 
 import com.google.common.base.Strings;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.AbstractConstruct;
-
 import org.yaml.snakeyaml.extensions.compactnotation.CompactConstructor;
 import org.yaml.snakeyaml.extensions.compactnotation.CompactData;
 import org.yaml.snakeyaml.introspector.BeanAccess;
@@ -123,6 +120,8 @@ public final class FlyImpl extends CompactConstructor implements Fly {
             }
             String origPackage = this.packageName;
             this.packageName = this.defaultPackage;
+            System.out.println("FlyImpl.load() - file:" + file);
+            System.out.println("FlyImpl.load() - package:" + this.packageName);
             yaml.load(getClass().getResourceAsStream(file));
             this.packageName = origPackage;
         }
@@ -132,6 +131,7 @@ public final class FlyImpl extends CompactConstructor implements Fly {
         Queue<Object> processQueue = new LinkedList<Object>(entityCache.values());
         while (!processQueue.isEmpty()) {
             Object entity = processQueue.remove();
+            System.out.println("entity:" + entity);
 //            for (Map.Entry<Class<?>, Processor<? super Object>> entry : postProcessors.entries()) {
 //                if (entity.getClass().isAssignableFrom(entry.getKey())) {
 //                    Processor<? super Object> postProcessor = entry.getValue();
