@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="fly.annotation.DataSetLoaderTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2015-05-19T01:29:24" hostname="Kiel-MBP.local" time="0.073">
+  <properties/>
+  <testcase name="testYaml" classname="fly.annotation.DataSetLoaderTest" time="0.067"/>
+  <testcase name="testLoadDefaultClassYaml" classname="fly.annotation.DataSetLoaderTest" time="0.002"/>
+  <testcase name="testCustomDefaultClassYaml" classname="fly.annotation.DataSetLoaderTest" time="0.003"/>
+  <testcase name="testClassDataSetNameCustom" classname="fly.annotation.DataSetLoaderTest" time="0.0"/>
+  <testcase name="testClassDataSetNameDefault" classname="fly.annotation.DataSetLoaderTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

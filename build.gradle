@@ -15,7 +15,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot' 
 
 jar {
-    baseName = 'dsy'
+    baseName = 'fly'
     version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
@@ -30,9 +30,9 @@ configurations {
 }
 dependencies {
     compile "org.yaml:snakeyaml:1.15"
-    compile "org.unitils:unitils-dbunit:3.3"
+    compile "com.google.guava:guava:18.0"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
 
-    testCompile "org.unitils:unitils-spring:3.3"
     testCompile "org.springframework.boot:spring-boot-starter-test"
     testCompile "org.springframework.boot:spring-boot-starter-jdbc"
     testCompile "com.h2database:h2:1.4.181"
