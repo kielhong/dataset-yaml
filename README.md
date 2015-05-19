@@ -1,8 +1,8 @@
-# dataset-yaml
-Fixture Dataset with YAML
+# FLY - Fixture Loader with YAML
+Fixture Loader with YAML
 
 # References
-* Arquillian : http://arquillian.org/
 * Fixy : https://github.com/sberan/Fixy
+* Arquillian : http://arquillian.org/
 * JYaml : http://jyaml.sourceforge.net/yaml4dbunit.html
 * Unitils : http://www.unitils.org/tutorial-database.html
