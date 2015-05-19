@@ -84,7 +84,7 @@ public final class FlyImpl extends CompactConstructor implements Fly {
 
     @Override
     protected Class<?> getClassForName(String name) throws ClassNotFoundException {
-        if(!Strings.isNullOrEmpty(packageName)) {
+        if (!Strings.isNullOrEmpty(packageName)) {
             try {
                 return super.getClassForName(packageName + "." + name);
             } catch (ClassNotFoundException ignored) { }
@@ -98,6 +98,7 @@ public final class FlyImpl extends CompactConstructor implements Fly {
         try {
             return super.getClassForName("java.lang." + name);
         } catch (ClassNotFoundException ignored) { }
+
         throw exceptionToThrow;
     }
 
@@ -114,14 +115,12 @@ public final class FlyImpl extends CompactConstructor implements Fly {
     void loadEntities(String... files) {
         Yaml yaml = new Yaml(this);
         yaml.setBeanAccess(beanAccess);
-        for(String file : files) {
-            if(!file.startsWith("/")) {
+        for (String file : files) {
+            if (!file.startsWith("/")) {
                 file = "/" + file;
             }
             String origPackage = this.packageName;
             this.packageName = this.defaultPackage;
-            System.out.println("FlyImpl.load() - file:" + file);
-            System.out.println("FlyImpl.load() - package:" + this.packageName);
             yaml.load(getClass().getResourceAsStream(file));
             this.packageName = origPackage;
         }
@@ -131,7 +130,6 @@ public final class FlyImpl extends CompactConstructor implements Fly {
         Queue<Object> processQueue = new LinkedList<Object>(entityCache.values());
         while (!processQueue.isEmpty()) {
             Object entity = processQueue.remove();
-            System.out.println("entity:" + entity);
 //            for (Map.Entry<Class<?>, Processor<? super Object>> entry : postProcessors.entries()) {
 //                if (entity.getClass().isAssignableFrom(entry.getKey())) {
 //                    Processor<? super Object> postProcessor = entry.getValue();

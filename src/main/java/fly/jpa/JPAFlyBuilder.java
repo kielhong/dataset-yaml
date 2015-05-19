@@ -52,9 +52,6 @@ public class JPAFlyBuilder {
     }
 
     public Fly build() {
-        System.out.println("packageName:" + this.defaultPackage);
-        System.out.println("file Simple Name:" + this.file);
-
         return new FlyImpl(
                 new JPAPersister(entityManager, mergeEntities),
                 defaultPackage,

@@ -25,9 +25,8 @@ public class FlyDataSetLoader {
     }
 
     private void getFileName(Class c) {
-        Annotation annotation = c.getAnnotation(Fly.class);
-        if (annotation instanceof Fly) {
-            Fly fly = (Fly)annotation;
+        if (c.isAnnotationPresent(Fly.class)) {
+            Fly fly = (Fly)c.getAnnotation(Fly.class);
 
             if (fly.dataSet().equals(Fly.defaultString)) {
                 this.packageName = c.getPackage().getName();
